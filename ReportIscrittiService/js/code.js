@@ -1,5 +1,9 @@
 ﻿$(function () {
 
+    var settori = ["","Edile","Impianti Fissi", "Inps"];
+   
+   
+
     var pivotGridChart = $("#pivotgrid-chart").dxChart({
         commonSeriesSettings: {
             type: "bar"
@@ -73,6 +77,37 @@
         alternateDataFields: false
     });
 
+    $("#dropDownBox").dxDropDownBox({
+        value: settori[0],
+        dataSource: settori,
+        contentTemplate: function (e) {
+            var $list = $("<div>").dxList({
+                dataSource: e.component.option("dataSource"),
+                selectionMode: "single",
+                onSelectionChanged: function (arg) {
+                    var value = arg.addedItems[0];
+                    e.component.option("value", value);
+                    e.component.close();
 
+
+                    console.log(value);
+
+
+                    var fields = pivotGrid.getDataSource().fields();
+                    pivotGrid.option("dataSource", {
+                        fields: fields,
+                         store: DevExpress.data.AspNet.createStore({
+                            key: "ID",
+                            loadUrl: "http://localhost:8080/api/devexpress?sector=" + encodeURIComponent(value)
+                        })
+                    })
+
+
+
+                }
+            });
+            return $list;
+        }
+    });
 
 });

@@ -84,7 +84,7 @@ namespace ReportIscrittiService
         // GET api/<controller>
         [HttpGet]
         [Route("devexpress")]
-        public HttpResponseMessage Get(DataSourceLoadOptions loadOptions)
+        public HttpResponseMessage Get(DataSourceLoadOptions loadOptions, string sector= "")
         {
             Model1 m = new Model1();
             loadOptions.PrimaryKey = new[] { "ID" };
