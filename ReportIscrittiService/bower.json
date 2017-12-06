@@ -1,0 +1,9 @@
+{
+  "name": "pivotgrid-webapi",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "devextreme": "~17.2.3",
+    "devextreme-aspnet-data": "^1.2.0"
+  }
+}
