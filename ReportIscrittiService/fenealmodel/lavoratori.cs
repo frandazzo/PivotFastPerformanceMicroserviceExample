@@ -1,4 +1,4 @@
-namespace ReportIscrittiService
+namespace ReportIscrittiService.fenealmodel
 {
     using System;
     using System.Collections.Generic;

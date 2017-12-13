@@ -59,14 +59,14 @@
         dataSource: {
             fields: [
                 { dataField: "Anno", area: "column", sortByPath: [] },
-                { dataField: "NomeRegione", area: "row",  sortOrder: "desc" },
-                { dataField: "NomeProvincia", area: "row",  sortOrder: "desc" },
+                { dataField: "Regione", area: "row",  sortOrder: "desc" },
+                { dataField: "Provincia", area: "row",  sortOrder: "desc" },
                 { dataField: "Id_Lavoratore", caption: "Num. Lavoratori", summaryType: "count", area: "data" }
             ],
             remoteOperations: true,
             store: DevExpress.data.AspNet.createStore({
                 key: "ID",
-                loadUrl: "http://localhost:8080/api/devexpress"
+                loadUrl: "http://localhost:8080/api/uil/iscrizioni"
             })
         }
     }).dxPivotGrid("instance");
@@ -98,7 +98,7 @@
                         fields: fields,
                          store: DevExpress.data.AspNet.createStore({
                             key: "ID",
-                            loadUrl: "http://localhost:8080/api/devexpress?sector=" + encodeURIComponent(value)
+                            loadUrl: "http://localhost:8080/api/feneal/iscrizioni?sector=" + encodeURIComponent(value)
                         })
                     })
 
