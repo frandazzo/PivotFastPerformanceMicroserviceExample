@@ -66,7 +66,7 @@
             remoteOperations: true,
             store: DevExpress.data.AspNet.createStore({
                 key: "ID",
-                loadUrl: "http://localhost:8080/api/uil/iscrizioni"
+                loadUrl: "http://localhost:8081/api/feneal/iscrizioni"
             })
         }
     }).dxPivotGrid("instance");
