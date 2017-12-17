@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImportOptions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+               Validatore="UIL" 
+               ErrorLogDir="C:\Errors" 
+               NomeCoda=".\private$\importData_queue" 
+               NomeCodaMorta=".\private$\importData_queue_dead_letter" 
+               NomeCodaRecupero=".\private$\importData_queue_retry" 
+               MailServer="smtp.gmail.com" 
+               MailAccount="fenealgest@gmail.com" 
+               MailPassword="fenealgest2013" 
+               MailFrom="fenealgest@web.it" 
+               MailAdministrator="fg.randazzo@hotmail.it" 
+               xmlns="www.uildbiscritti.it" 
+               />

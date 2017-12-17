@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="UilDBIscritti.ImportWcfService.ImportExportService" CodeBehind="ImportExportService.svc.cs" %>
