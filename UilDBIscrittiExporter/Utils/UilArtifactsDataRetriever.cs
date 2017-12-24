@@ -9,21 +9,18 @@ namespace UilDBIscrittiExporter.Utils
 {
     public class UilArtifactsDataRetriever : IUilArtifactsInfoRetriever
     {
-        private List<String> _categories = new List<string>
+        private IList<String> _categories;
+        private IList<String> _territories;
+
+
+        public UilArtifactsDataRetriever()
         {
-            "FENEAL",
-            "UILA",
-            "UILTUCS"
-        };
+            ServiceReference1.IImportExport exporter = new ServiceReference1.ImportExportClient("BasicHttpBinding_IImportExport");
+      
+            _categories = exporter.GetCategories().OrderBy(q => q).ToList();
+            _territories = exporter.GetTerritori().OrderBy(q => q).ToList();
 
-        private List<String> _territories = new List<string>
-        {
-            "MATERA",
-            "POTENZA",
-            "SALERNO"
-        };
-
-
+        }
 
 
         public bool ExistCategory(string categoryName)

@@ -52,7 +52,7 @@ Public Class MapperTerritorio
             Territorio.Descrizione = rs("description")
             Territorio.Alias = rs("alias")
             Territorio.Province = rs("province")
-
+            Territorio.Key = Key
 
             Return Territorio
 

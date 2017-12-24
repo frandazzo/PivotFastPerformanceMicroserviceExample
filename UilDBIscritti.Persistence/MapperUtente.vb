@@ -23,11 +23,11 @@ Public Class MapperUtente
 #Region "Istruzioni Sql"
 
     Protected Overrides Function FindAllStatement() As String
-        Return "Select * from Utenti"
+        Return "Select * from fenealweb_users"
     End Function
 
     Protected Overrides Function FindByKeyStatement() As String
-        Return "Select * from Utenti where Id = @Id"
+        Return "Select * from fenealweb_users where Id = @Id"
     End Function
 
     Protected Overrides Function InsertStatement() As String
@@ -70,7 +70,7 @@ Public Class MapperUtente
             User.Nome = rs.Item("name")
             User.Cognome = rs.Item("surname")
             User.Mail = rs.Item("mail")
-            User.Locked = IIf(rs.Item("active") = 0, False, True)
+            User.Locked = IIf(rs.Item("active") = 1, False, True)
 
             User.PasswordData = New Date(2050, 1, 1)
 

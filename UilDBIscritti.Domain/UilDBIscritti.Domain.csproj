@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Categoria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AccessChecker.cs" />
     <Compile Include="Security\RoleProvider.cs" />
     <Compile Include="Security\Utente.cs" />
     <Compile Include="Territorio.cs" />

@@ -14,15 +14,25 @@ namespace UilDBIscritti.ImportWcfService
     public interface IImportExport
     {
 
-        [OperationContract]
-        string GetData(int value);
+        //[OperationContract]
+        //string GetData(int value);
 
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        //[OperationContract]
+        //CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: aggiungere qui le operazioni del servizio
         [OperationContract]
         string ImportData(ExportTrace trace);
+
+        [OperationContract]
+        IList<string> GetCategories();
+
+
+        [OperationContract]
+        IList<string> GetTerritori();
+
+
+
     }
 
 

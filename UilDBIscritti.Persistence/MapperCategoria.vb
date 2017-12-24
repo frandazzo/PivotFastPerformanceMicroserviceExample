@@ -3,10 +3,11 @@
 Public Class MapperCategoria
     Inherits AbstractRDBMapper
 
-    Public Sub New()
-        MyBase.Cache = New PersistentObjectCache(False)
-    End Sub
 
+    Public Sub New()
+        MyBase.Cache = New PersistentObjectCache(True)
+        m_IsAutoIncrementID = True
+    End Sub
 #Region "Istruzioni Sql"
 
     Protected Overrides Function FindAllStatement() As String
@@ -52,6 +53,7 @@ Public Class MapperCategoria
             Categoria.Descrizione = rs("description")
             Categoria.Alias = rs("alias")
 
+            Categoria.Key = Key
 
 
             Return Categoria

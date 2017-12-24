@@ -89,7 +89,8 @@ namespace UilDBIscritti.Handlers
             IList<string> result = new List<string>();
             foreach (Territorio item in territori)
             {
-                result.Add(item.Province);
+                if(result.IndexOf(item.Province) == -1)
+                    result.Add(item.Province);
             }
 
 

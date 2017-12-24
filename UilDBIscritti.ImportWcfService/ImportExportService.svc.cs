@@ -6,8 +6,13 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Web.Configuration;
+using UilDBIscritti.Domain.Security;
 using UilDBIscritti.Handlers.ImportHandler;
+using UilDBIscritti.Handlers.SecurityProviders;
 using UilDBIscritti.IntegrationEntities;
+using WIN.TECHNICAL.PERSISTENCE;
+using WIN.TECHNICAL.SECURITY_NEW;
+using WIN.TECHNICAL.SECURITY_NEW.Login;
 
 namespace UilDBIscritti.ImportWcfService
 {
@@ -16,34 +21,88 @@ namespace UilDBIscritti.ImportWcfService
     public class ImportExportService
         : IImportExport
     {
-        public string GetData(int value)
+        IPersistenceFacade f;
+        SecurityController c;
+       // WIN.BASEREUSE.GeoLocationFacade g;
+
+        public ImportExportService()
         {
-            return string.Format("You entered: {0}", value);
+            Initialize();
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
+
 
         public string ImportData(ExportTrace trace)
         {
-            QueueSender sender = new QueueSender(WebConfigurationManager.AppSettings["QueueName"]);
+            string userName = trace.UserName;
+            string password = trace.Password;
+            string categoria = trace.Category;
+
+
+
+            //eseguo il login
+            LoginResult r = c.Login(userName, password);
+
+            if (r.CanAccess)
+            {
+                //se l'utente è corretamente loggato allora posso verificare la lactegoria che sia uguale a quella della traccia inviata
+                Utente u = new UserProvider(f).GetUserByUserName(userName) as Utente;
+                if (u.Categoria == null)
+                    return "Accesso negato: Categoria utente inesistente";
+                if (!u.Categoria.Alias.ToLower().Equals(categoria.ToLower()))
+                    return "Accesso negato: Categoria utente diversa";
+
+                //a questo punto posso inserire il mesasaggio nella coda...
+
+                try
+                {
+                    QueueSender sender = new QueueSender(WebConfigurationManager.AppSettings["QueueName"]);
+
+                    string errorLogDir = WebConfigurationManager.AppSettings["ErrorLogDir"];
+
+                    sender.Send(errorLogDir, trace);
+
+                    return "";
+                }
+                catch (Exception ex)
+                {
+                    return "Errore dopo autenticazione: " + ex.Message;
+                }
+
+                
+            }
+
+            return "Utente non riconosciuto";
             
-            string errorLogDir = WebConfigurationManager.AppSettings["ErrorLogDir"];
 
-            sender.Send(errorLogDir, trace);
+        }
 
-            return "ok";
+        private void Initialize()
+        {
+            //inizializzo i servizi per la persistenza
+            f = DataAccessServices.SimplePersistenceFacadeInstance();
 
+
+            //inizializzo i servizi per la sicurezza
+            c = SecurityController.NewInstance;
+            c.InializeSecurityController(new UserProvider(f), new RoleProvider(), new AccessChecker(new UserLocker(f)));
+            c.ResetLogin();
+        }
+
+        public IList<string> GetCategories()
+        {
+            UilDBIscritti.Handlers.UilArtifactsDataRetriever r = new Handlers.UilArtifactsDataRetriever(f);
+
+            return r.GetCategories();
+
+
+        }
+
+        public IList<string> GetTerritori()
+        {
+            UilDBIscritti.Handlers.UilArtifactsDataRetriever r = new Handlers.UilArtifactsDataRetriever(f);
+
+            return r.GetTerritories();
         }
     }
 }

@@ -51,7 +51,8 @@
     <Reference Include="WIN.TECHNICAL.SERVICE_PROCESSOR">
       <HintPath>..\dlls\WIN.TECHNICAL.SERVICE_PROCESSOR.exe</HintPath>
     </Reference>
-    <Reference Include="WIN.TECHNICAL.VB.PERSISTENCE">
+    <Reference Include="WIN.TECHNICAL.VB.PERSISTENCE, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dlls\WIN.TECHNICAL.VB.PERSISTENCE.dll</HintPath>
     </Reference>
     <Reference Include="WIN.TECHNICAL.VB.UTILS">

@@ -279,7 +279,7 @@ namespace UilDBIscrittiExporter.GeoElements
         }
 
 
-        public System.Collections.IList GetComuniHash()
+        public void LoadComuniHash()
         {
 
 
@@ -315,7 +315,7 @@ namespace UilDBIscrittiExporter.GeoElements
                 }
                 r.Close();
                 c.Close();
-                return _nazioni;
+               
            
             //return _ps.GetAllObjects("Nazione");
         }

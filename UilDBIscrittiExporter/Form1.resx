@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="_validateTerritoryPage.DescriptionText" xml:space="preserve">
+    <value>Nella seguente sezione verrà effettuata una validazione del campo territorio. Tale campo è obbligatorio e deve corrispondere ad uno dei valori specificati nella tabella riportata nella sezione precedente. </value>
+  </data>
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

@@ -25,7 +25,7 @@ namespace UilDBIscrittiExporter
             GeoHandlerProvider.Instance.Geo = GeoLocationFacade.Instance();
             //metto in cache tutte le nazioni e i comuni per migliorare le prestazione nella validazione;
             GeoHandlerClass.Instance().GetNazioni();
-            GeoHandlerClass.Instance().GetComuniHash();
+            GeoHandlerClass.Instance().LoadComuniHash();
             InitializeX509CertificateValidation();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

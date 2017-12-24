@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f33fb04a-dfc3-456d-817b-b49b5f2d8243" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="48ba7995-fd41-4149-b84a-f828fdb7021b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://www.uildbiscritti.it:8082/UilDBIscritti.ImportWcfService/ImportExportService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:55601/ImportExportService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ImportExportService.xsd" MetadataType="Schema" ID="e430455a-5c36-4547-98ab-41c1bf42c65b" SourceId="1" SourceUrl="http://www.uildbiscritti.it:8082/UilDBIscritti.ImportWcfService/ImportExportService.svc?xsd=xsd1" />
-    <MetadataFile FileName="ImportExportService1.xsd" MetadataType="Schema" ID="c41e1039-1b94-4306-8643-16f1d8c6546d" SourceId="1" SourceUrl="http://www.uildbiscritti.it:8082/UilDBIscritti.ImportWcfService/ImportExportService.svc?xsd=xsd3" />
-    <MetadataFile FileName="ImportExportService.wsdl" MetadataType="Wsdl" ID="0409cfa9-58c6-4746-a488-45024f9fa6bc" SourceId="1" SourceUrl="http://www.uildbiscritti.it:8082/UilDBIscritti.ImportWcfService/ImportExportService.svc?wsdl" />
-    <MetadataFile FileName="ImportExportService2.xsd" MetadataType="Schema" ID="d2da7858-f709-47fe-8e9f-33ea6d4dd8ad" SourceId="1" SourceUrl="http://www.uildbiscritti.it:8082/UilDBIscritti.ImportWcfService/ImportExportService.svc?xsd=xsd0" />
-    <MetadataFile FileName="ImportExportService3.xsd" MetadataType="Schema" ID="9d8efa6b-9cc8-47d8-a0ea-4971ce97d86d" SourceId="1" SourceUrl="http://www.uildbiscritti.it:8082/UilDBIscritti.ImportWcfService/ImportExportService.svc?xsd=xsd2" />
-    <MetadataFile FileName="ImportExportService.disco" MetadataType="Disco" ID="615de6ae-c3e7-48b2-b557-4766f242adff" SourceId="1" SourceUrl="http://www.uildbiscritti.it:8082/UilDBIscritti.ImportWcfService/ImportExportService.svc?disco" />
+    <MetadataFile FileName="ImportExportService.xsd" MetadataType="Schema" ID="4df0de4d-877f-4250-98b2-6da9aab3585f" SourceId="1" SourceUrl="http://localhost:55601/ImportExportService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ImportExportService.wsdl" MetadataType="Wsdl" ID="810592cd-463b-4fa0-bb58-85fbceff92ac" SourceId="1" SourceUrl="http://localhost:55601/ImportExportService.svc?wsdl" />
+    <MetadataFile FileName="ImportExportService.disco" MetadataType="Disco" ID="67e67dca-2fa8-4b3a-9adc-f3974e90c252" SourceId="1" SourceUrl="http://localhost:55601/ImportExportService.svc?disco" />
+    <MetadataFile FileName="ImportExportService1.xsd" MetadataType="Schema" ID="7172b7c1-b9a8-4c58-a15b-4cfcee51eb5a" SourceId="1" SourceUrl="http://localhost:55601/ImportExportService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ImportExportService2.xsd" MetadataType="Schema" ID="ea611f74-23d4-49a8-9ee9-28d139a65ff5" SourceId="1" SourceUrl="http://localhost:55601/ImportExportService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ImportExportService3.xsd" MetadataType="Schema" ID="f8a43dba-c23b-44d0-a2e7-e31d03fe3848" SourceId="1" SourceUrl="http://localhost:55601/ImportExportService.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
