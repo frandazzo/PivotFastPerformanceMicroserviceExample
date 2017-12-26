@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UilDBIscrittiExporter.GeoElements;
+using UilDBIscrittiExporter.Model;
 using WIN.BASEREUSE;
 
 namespace UilDBIscrittiExporter
@@ -26,6 +27,8 @@ namespace UilDBIscrittiExporter
             //metto in cache tutte le nazioni e i comuni per migliorare le prestazione nella validazione;
             GeoHandlerClass.Instance().GetNazioni();
             GeoHandlerClass.Instance().LoadComuniHash();
+            //recupero i dati dal server per metterli in cache
+            ServerData d = ServerData.Instance;
             InitializeX509CertificateValidation();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

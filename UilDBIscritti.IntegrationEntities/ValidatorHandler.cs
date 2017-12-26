@@ -110,7 +110,7 @@ namespace UilDBIscritti.IntegrationEntities
 
             h = new Hashtable();
 
-            if (CorrectTrace.Workers.Length == 0)
+            if (_trace.Workers.Length == 0)
                 throw new Exception("Impossibile creare una lista di pacchetti di esportazione. La traccia non contiene nessun lavoratore");
 
             int traceNumber = 1;
@@ -118,7 +118,7 @@ namespace UilDBIscritti.IntegrationEntities
 
             IList<ExportTrace> list = new List<ExportTrace>();
             //costruisco la tabella hash con i lavoratori
-            foreach (WorkerDTO item in CorrectTrace.Workers)
+            foreach (WorkerDTO item in _trace.Workers)
             {
                 
 
@@ -140,7 +140,7 @@ namespace UilDBIscritti.IntegrationEntities
 
             for (int i = 1; i <= traceNumber; i++)
             {
-                ExportTrace t = CorrectTrace.Clone();
+                ExportTrace t = _trace.Clone();
                 t.ExportNumber = i;
                 t.TotalExports = traceNumber;
                 t.Workers = (WorkerDTO[])h[i];
@@ -317,8 +317,8 @@ namespace UilDBIscritti.IntegrationEntities
         {
             get
             {
-                if (!_validationExecuted)
-                    throw new Exception("Validazione non eseguita. Eseguire la validazione prima di richiedere la traccia per l'invio!");
+                //if (!_validationExecuted)
+                //    throw new Exception("Validazione non eseguita. Eseguire la validazione prima di richiedere la traccia per l'invio!");
                 if (!string.IsNullOrEmpty(_traceError))
                     throw new Exception("Errori nella testata dell'importazione: " + _traceError);
 

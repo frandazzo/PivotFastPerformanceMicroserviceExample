@@ -120,6 +120,9 @@
   <data name="_validateTerritoryPage.DescriptionText" xml:space="preserve">
     <value>Nella seguente sezione verrà effettuata una validazione del campo territorio. Tale campo è obbligatorio e deve corrispondere ad uno dei valori specificati nella tabella riportata nella sezione precedente. </value>
   </data>
+  <data name="_checkFiscalCodesPage.DescriptionText" xml:space="preserve">
+    <value>In questa pagina verranno validati i codici fiscali inseriti. Il codice fiscale non è un campo obbligatorio.  Qualora il codice fiscale sia stato inserito e non passa la validazione la procedura terminerà.</value>
+  </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

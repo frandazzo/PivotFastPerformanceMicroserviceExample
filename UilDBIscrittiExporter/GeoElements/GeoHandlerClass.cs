@@ -75,39 +75,44 @@ namespace UilDBIscrittiExporter.GeoElements
             }
             else
             {
-                //if (_comuni.Count == 0)
-                //{
+
                 _comuni = new ArrayList();
-
-                OleDbConnection c = new OleDbConnection(_connString);
-                c.Open();
-                string s = code.Replace("'", "''");
-                OleDbCommand cmd = new OleDbCommand("select * from TB_COMUNI where CODICE_FISCALE = '" + s + "'", c);
-                OleDbDataReader r = cmd.ExecuteReader();
-
-                while (r.Read())
-                {
-
-                    int id = r.IsDBNull(0) ? -1 : (int)r.GetValue(0);
-                    Key k = new Key(id);
-
-                    string descrizione = r.IsDBNull(1) ? null : (string)r.GetValue(1);
-                    int idProvincia = r.IsDBNull(2) ? -1 : (int)r.GetValue(2);
-                    int idRegione = r.IsDBNull(3) ? -1 : (int)r.GetValue(3);
-                    string cap = r.IsDBNull(4) ? null : (string)r.GetValue(4);
-                    string codiceFiscale = r.IsDBNull(5) ? null : (string)r.GetValue(5);
-                    string codiceIstat = r.IsDBNull(6) ? null : (string)r.GetValue(6);
-
-                    Comune com = new Comune(k, descrizione, idProvincia, idRegione, cap, codiceFiscale, codiceIstat);
-                   
-                    _comuni.Add(com);
-                }
-                r.Close();
-                c.Close();
-
-                if (_comuni.Count >0)
-                    _hashComuniFiscal.Add(code.ToLower(), _comuni[_comuni.Count -1] as Comune);
                 return _comuni;
+
+
+                ////if (_comuni.Count == 0)
+                ////{
+                //_comuni = new ArrayList();
+
+                //OleDbConnection c = new OleDbConnection(_connString);
+                //c.Open();
+                //string s = code.Replace("'", "''");
+                //OleDbCommand cmd = new OleDbCommand("select * from TB_COMUNI where CODICE_FISCALE = '" + s + "'", c);
+                //OleDbDataReader r = cmd.ExecuteReader();
+
+                //while (r.Read())
+                //{
+
+                //    int id = r.IsDBNull(0) ? -1 : (int)r.GetValue(0);
+                //    Key k = new Key(id);
+
+                //    string descrizione = r.IsDBNull(1) ? null : (string)r.GetValue(1);
+                //    int idProvincia = r.IsDBNull(2) ? -1 : (int)r.GetValue(2);
+                //    int idRegione = r.IsDBNull(3) ? -1 : (int)r.GetValue(3);
+                //    string cap = r.IsDBNull(4) ? null : (string)r.GetValue(4);
+                //    string codiceFiscale = r.IsDBNull(5) ? null : (string)r.GetValue(5);
+                //    string codiceIstat = r.IsDBNull(6) ? null : (string)r.GetValue(6);
+
+                //    Comune com = new Comune(k, descrizione, idProvincia, idRegione, cap, codiceFiscale, codiceIstat);
+                   
+                //    _comuni.Add(com);
+                //}
+                //r.Close();
+                //c.Close();
+
+                //if (_comuni.Count >0)
+                //    _hashComuniFiscal.Add(code.ToLower(), _comuni[_comuni.Count -1] as Comune);
+                //return _comuni;
 
             }
             //}

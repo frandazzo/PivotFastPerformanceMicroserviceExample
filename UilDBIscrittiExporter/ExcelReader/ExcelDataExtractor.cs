@@ -79,13 +79,13 @@ namespace UilDBIscrittiExporter.ExcelReader
             foreach (Hashtable item in _data)
             {
                 Worker w = new Worker();
-                w.Cellulare = item["COGNOME_UTENTE"] as string != null ? item["COGNOME_UTENTE"].ToString().Trim().ToUpper(): "";
-                w.Mail = item["NOME_UTENTE"] as string != null ? item["NOME_UTENTE"].ToString().Trim().ToUpper() : "";
+                w.Cognome = item["COGNOME_UTENTE"] as string != null ? item["COGNOME_UTENTE"].ToString().Trim().ToUpper(): "";
+                w.Nome = item["NOME_UTENTE"] as string != null ? item["NOME_UTENTE"].ToString().Trim().ToUpper() : "";
                 w.Fiscale = item["FISCALE"] as string != null ? item["FISCALE"].ToString().Trim().ToUpper() : "";
-                w.Cognome = item["NAZIONALITA"] as string != null ? item["NAZIONALITA"].ToString().Trim().ToUpper() : "";
-                w.Nome = item["CELLULARE"] as string != null ? item["CELLULARE"].ToString().Trim().ToUpper() : "";
-                w.Territorio = item["MAIL"] as string != null ? item["MAIL"].ToString().Trim().ToUpper() : "";
-                w.Nazionalita = item["TERRITORIO"] as string != null ? item["TERRITORIO"].ToString().Trim().ToUpper() : "";
+                w.Nazionalita = item["NAZIONALITA"] as string != null ? item["NAZIONALITA"].ToString().Trim().ToUpper() : "";
+                w.Cellulare = item["CELLULARE"] as string != null ? item["CELLULARE"].ToString().Trim().ToUpper() : "";
+                w.Mail = item["MAIL"] as string != null ? item["MAIL"].ToString().Trim().ToUpper() : "";
+                w.Territorio = item["TERRITORIO"] as string != null ? item["TERRITORIO"].ToString().Trim().ToUpper() : "";
 
                 resultData.Add(w);
             }

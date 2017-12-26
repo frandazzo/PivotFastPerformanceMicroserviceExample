@@ -7,7 +7,7 @@ namespace UilDBIscrittiExporter.Utils
 {
     class NameSurnameDivider
     {
-        internal NameSurnameDTO DivideNameFromSurname(string nameSurname)
+        internal static NameSurnameDTO DivideNameFromSurname(string nameSurname)
         {
             if (String.IsNullOrEmpty(nameSurname))
                 return new NameSurnameDTO();
@@ -17,7 +17,7 @@ namespace UilDBIscrittiExporter.Utils
         }
 
 
-        private NameSurnameDTO calculateSplitNameAndSurname(string nameSurname)
+        private static NameSurnameDTO calculateSplitNameAndSurname(string nameSurname)
         {
 
             String sur = nameSurname.ToUpper();
@@ -42,7 +42,7 @@ namespace UilDBIscrittiExporter.Utils
             NameSurnameDTO result = new NameSurnameDTO();
             if (p.Length == 1)
             {
-                result.Surname = "(vuoto)";
+                result.Surname = "";
                 return result;
             }
 
@@ -60,6 +60,7 @@ namespace UilDBIscrittiExporter.Utils
             dan.Add( "DEL");
             dan.Add( "DELLI");
             dan.Add( "DELLA");
+            dan.Add("DELLE");
             dan.Add( "DALLA");
             dan.Add( "LA");
             dan.Add("LE");
@@ -85,7 +86,7 @@ namespace UilDBIscrittiExporter.Utils
 
         }
 
-        private String calculateNameFromArrayPosition(String[] elements, int position)
+        private static String calculateNameFromArrayPosition(String[] elements, int position)
         {
             String result = "";
             int i = 0;

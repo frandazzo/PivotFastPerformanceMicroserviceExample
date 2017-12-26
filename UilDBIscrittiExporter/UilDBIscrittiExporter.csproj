@@ -79,6 +79,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Credential\CredentialDB.cs" />
     <Compile Include="ExcelReader\AbstractExcelReader.cs" />
     <Compile Include="ExcelReader\ExcelDataExtractor.cs" />
     <Compile Include="ExcelReader\ExcelExtractedData.cs" />
@@ -89,6 +90,10 @@
     <Compile Include="GeoElements\GeoHandlerProvider.cs" />
     <Compile Include="GeoElements\LazyComune.cs" />
     <Compile Include="GeoElements\LazyProvincie.cs" />
+    <Compile Include="Model\ExportTraceGroupFactory.cs" />
+    <Compile Include="Model\ServerData.cs" />
+    <Compile Include="Model\TraceHeader.cs" />
+    <Compile Include="Model\WizardState.cs" />
     <Compile Include="Model\Worker.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -167,6 +172,9 @@
     <Content Include="GEODB\geo2003.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\ok1.png" />
+    <None Include="Resources\sign-error-icon.png" />
+    <None Include="Resources\ok.png" />
     <None Include="Resources\database.png" />
     <None Include="Resources\UIL_logo.gif" />
     <None Include="Service References\ServiceReference1\Reference.svcmap">
