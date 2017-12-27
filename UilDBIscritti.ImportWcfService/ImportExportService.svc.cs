@@ -23,7 +23,7 @@ namespace UilDBIscritti.ImportWcfService
     {
         IPersistenceFacade f;
         SecurityController c;
-       // WIN.BASEREUSE.GeoLocationFacade g;
+        // WIN.BASEREUSE.GeoLocationFacade g;
 
         public ImportExportService()
         {
@@ -69,11 +69,11 @@ namespace UilDBIscritti.ImportWcfService
                     return "Errore dopo autenticazione: " + ex.Message;
                 }
 
-                
+
             }
 
             return "Utente non riconosciuto";
-            
+
 
         }
 
@@ -104,5 +104,31 @@ namespace UilDBIscritti.ImportWcfService
 
             return r.GetTerritories();
         }
+
+        public void RetrieveDataFromCoda()
+        {
+            QueueRetriever ret = new QueueRetriever();
+            ret.Process();
+        }
+
+        public bool UserIsValid(string username, string password, string category)
+        {
+            LoginResult r = c.Login(username, password);
+
+            if (r.CanAccess)
+            {
+                //se l'utente è corretamente loggato allora posso verificare la lactegoria che sia uguale a quella della traccia inviata
+                Utente u = new UserProvider(f).GetUserByUserName(username) as Utente;
+                if (u.Categoria == null)
+                    return false;
+                if (!u.Categoria.Alias.ToLower().Equals(category.ToLower()))
+                    return false;
+
+                return true;
+            }
+
+            return false;
+        }
     }
+
 }

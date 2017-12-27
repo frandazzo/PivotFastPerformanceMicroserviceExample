@@ -32,7 +32,7 @@ namespace UilDBIscritti.Domain.ValidationSubsystem
             s.Territorio = parentExport.Territorio;
 
             s.DenormalizedData = CreateDenormalizedData(worker);
-
+            s.Anno = parentExport.Anno;
             s.Worker = worker;
             s.ParentExport = parentExport;
 

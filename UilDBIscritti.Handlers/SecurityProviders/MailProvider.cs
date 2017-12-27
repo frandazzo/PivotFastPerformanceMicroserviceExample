@@ -44,7 +44,7 @@ namespace UilDBIscritti.Handlers.SecurityProviders
             smtp.Credentials = new System.Net.NetworkCredential
                  (_smtpAccount, _smtpPassword);
             //Or your Smtp Email ID and Password
-            smtp.EnableSsl = true;
+            smtp.EnableSsl = false;
             smtp.Send(mail);
          
            

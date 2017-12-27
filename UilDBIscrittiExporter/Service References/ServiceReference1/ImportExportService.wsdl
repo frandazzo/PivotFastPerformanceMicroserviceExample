@@ -26,6 +26,18 @@
   <wsdl:message name="IImportExport_GetTerritori_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTerritoriResponse" />
   </wsdl:message>
+  <wsdl:message name="IImportExport_RetrieveDataFromCoda_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDataFromCoda" />
+  </wsdl:message>
+  <wsdl:message name="IImportExport_RetrieveDataFromCoda_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveDataFromCodaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IImportExport_UserIsValid_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserIsValid" />
+  </wsdl:message>
+  <wsdl:message name="IImportExport_UserIsValid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserIsValidResponse" />
+  </wsdl:message>
   <wsdl:portType name="IImportExport">
     <wsdl:operation name="ImportData">
       <wsdl:input wsaw:Action="http://tempuri.org/IImportExport/ImportData" message="tns:IImportExport_ImportData_InputMessage" />
@@ -38,6 +50,14 @@
     <wsdl:operation name="GetTerritori">
       <wsdl:input wsaw:Action="http://tempuri.org/IImportExport/GetTerritori" message="tns:IImportExport_GetTerritori_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IImportExport/GetTerritoriResponse" message="tns:IImportExport_GetTerritori_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDataFromCoda">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImportExport/RetrieveDataFromCoda" message="tns:IImportExport_RetrieveDataFromCoda_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImportExport/RetrieveDataFromCodaResponse" message="tns:IImportExport_RetrieveDataFromCoda_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserIsValid">
+      <wsdl:input wsaw:Action="http://tempuri.org/IImportExport/UserIsValid" message="tns:IImportExport_UserIsValid_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IImportExport/UserIsValidResponse" message="tns:IImportExport_UserIsValid_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IImportExport" type="tns:IImportExport">
@@ -62,6 +82,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetTerritori">
       <soap:operation soapAction="http://tempuri.org/IImportExport/GetTerritori" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveDataFromCoda">
+      <soap:operation soapAction="http://tempuri.org/IImportExport/RetrieveDataFromCoda" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserIsValid">
+      <soap:operation soapAction="http://tempuri.org/IImportExport/UserIsValid" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

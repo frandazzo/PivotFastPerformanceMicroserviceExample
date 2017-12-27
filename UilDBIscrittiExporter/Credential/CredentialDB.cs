@@ -10,9 +10,7 @@ namespace UilDBIscrittiExporter.Credential
     {
         private CredentialDB()
         {
-            Category = "FENEAL";
-            UserName = "feneal";
-            Password = "feneal";
+         
         }
 
         private static CredentialDB _instance;

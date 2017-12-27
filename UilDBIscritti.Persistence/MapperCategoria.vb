@@ -11,7 +11,7 @@ Public Class MapperCategoria
 #Region "Istruzioni Sql"
 
     Protected Overrides Function FindAllStatement() As String
-        Return "Select * from fenealweb_categories  order by description"
+        Return "Select * from fenealweb_categories"
     End Function
 
     Protected Overrides Function FindByKeyStatement() As String

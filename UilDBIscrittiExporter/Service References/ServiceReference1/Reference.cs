@@ -32,6 +32,18 @@ namespace UilDBIscrittiExporter.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportExport/GetTerritori", ReplyAction="http://tempuri.org/IImportExport/GetTerritoriResponse")]
         System.Threading.Tasks.Task<string[]> GetTerritoriAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportExport/RetrieveDataFromCoda", ReplyAction="http://tempuri.org/IImportExport/RetrieveDataFromCodaResponse")]
+        void RetrieveDataFromCoda();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportExport/RetrieveDataFromCoda", ReplyAction="http://tempuri.org/IImportExport/RetrieveDataFromCodaResponse")]
+        System.Threading.Tasks.Task RetrieveDataFromCodaAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportExport/UserIsValid", ReplyAction="http://tempuri.org/IImportExport/UserIsValidResponse")]
+        bool UserIsValid(string username, string password, string category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IImportExport/UserIsValid", ReplyAction="http://tempuri.org/IImportExport/UserIsValidResponse")]
+        System.Threading.Tasks.Task<bool> UserIsValidAsync(string username, string password, string category);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -83,6 +95,22 @@ namespace UilDBIscrittiExporter.ServiceReference1 {
         
         public System.Threading.Tasks.Task<string[]> GetTerritoriAsync() {
             return base.Channel.GetTerritoriAsync();
+        }
+        
+        public void RetrieveDataFromCoda() {
+            base.Channel.RetrieveDataFromCoda();
+        }
+        
+        public System.Threading.Tasks.Task RetrieveDataFromCodaAsync() {
+            return base.Channel.RetrieveDataFromCodaAsync();
+        }
+        
+        public bool UserIsValid(string username, string password, string category) {
+            return base.Channel.UserIsValid(username, password, category);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UserIsValidAsync(string username, string password, string category) {
+            return base.Channel.UserIsValidAsync(username, password, category);
         }
     }
 }

@@ -112,18 +112,18 @@ namespace UilDBIscrittiExporter.Model
         {
             string fiscalCodeCheck = new GeoElementChecker().CheckFiscalCode(Fiscale);
             //se la validazione formale va in porto eseguo la validazione del codice
-            //comune o nazione
-            if (string.IsNullOrEmpty(fiscalCodeCheck))
-            {
-                DatiFiscali d = GeoLocationFacade.Instance().CalcolaDatiFiscali(Fiscale);
-                if (d.Nazione.Id == -1)
-                {
-                    //se si tratta di nazione nulla....
-                    //non è stato risolto il codice comune o nazione
-                    return "Codice comune o nazione non riconosciuto";
-                }
-                return "";      
-            }
+            ////comune o nazione
+            //if (string.IsNullOrEmpty(fiscalCodeCheck))
+            //{
+            //    DatiFiscali d = GeoLocationFacade.Instance().CalcolaDatiFiscali(Fiscale);
+            //    if (d.Nazione.Id == -1)
+            //    {
+            //        //se si tratta di nazione nulla....
+            //        //non è stato risolto il codice comune o nazione
+            //        return "Codice comune o nazione non riconosciuto";
+            //    }
+            //    return "";      
+            //}
             return fiscalCodeCheck;
         }
 

@@ -72,14 +72,14 @@ namespace UilDBIscritti.Handlers.ImportHandler
             log.WriteEntry("Avvio import Uil DB Iscritti", EventLogEntryType.Information);
             correctOutcome = ImporDBNazionale(log);
 
-            if (!correctOutcome)
-            {
-                log.WriteEntry("Import Uil DB Iscritti terminato con errori. Invio la mail di notifica ed esco", EventLogEntryType.Error);
-                //notifico con una mail di errore
-                string message = "Errori nel processo di importazione nel database nazionale. Non si proseguirà ad una eventuale importazione Uil DB Iscritti";
-                SendMail(message);
-                return;
-            }
+            //if (!correctOutcome)
+            //{
+            //    log.WriteEntry("Import Uil DB Iscritti terminato con errori. Invio la mail di notifica ed esco", EventLogEntryType.Error);
+            //    //notifico con una mail di errore
+            //    string message = "Errori nel processo di importazione nel database nazionale. Non si proseguirà ad una eventuale importazione Uil DB Iscritti";
+            //    SendMail(message);
+            //    return;
+            //}
 
             log.WriteEntry("Termine importazione", EventLogEntryType.Information);
 
@@ -100,14 +100,23 @@ namespace UilDBIscritti.Handlers.ImportHandler
                      currentExport.Categoria.Alias,
                      currentExport.Province.Descrizione, 
                      currentExport.Anno);
-                if (!string.IsNullOrEmpty(currentExport.ExporterMail))
-                    m.SendMail(currentExport.ExporterMail,subject , message);
+                try
+                {
+                    if (!string.IsNullOrEmpty(currentExport.ExporterMail))
+                        m.SendMail(currentExport.ExporterMail, subject, message);
+                }
+                catch (Exception)
+                {
+
+                    
+                }
+               
 
                 m.SendMail(_op.MailAdministrator, subject, message);
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 //non fa nulla
             }

@@ -26,7 +26,7 @@ namespace UilDBIscritti.Handlers
         public bool ExistCategory(string categoryName)
         {
             Query q = _persistence.CreateNewQuery("MapperCategoria");
-            q.AddWhereClause(Criteria.Equal("alias", categoryName));
+            q.AddWhereClause(Criteria.MatchesEqual("alias", categoryName, _persistence.DBType));
 
             IList res = q.Execute(_persistence);
 
@@ -53,7 +53,7 @@ namespace UilDBIscritti.Handlers
         public int GetCategoriaId(string nomeCategoria)
         {
             Query q = _persistence.CreateNewQuery("MapperCategoria");
-            q.AddWhereClause(Criteria.Equal("alias", nomeCategoria));
+            q.AddWhereClause(Criteria.MatchesEqual("alias", nomeCategoria, _persistence.DBType));
 
             IList res = q.Execute(_persistence);
 
@@ -101,7 +101,7 @@ namespace UilDBIscritti.Handlers
         public int GetTerritorioId(string nomeProvincia)
         {
             Query q = _persistence.CreateNewQuery("MapperTerritorio");
-            q.AddWhereClause(Criteria.Equal("province", nomeProvincia));
+            q.AddWhereClause(Criteria.MatchesEqual("p.Descrizione", nomeProvincia, _persistence.DBType));
 
             IList res = q.Execute(_persistence);
 

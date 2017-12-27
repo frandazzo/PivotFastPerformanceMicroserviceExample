@@ -31,6 +31,11 @@ namespace UilDBIscritti.ImportWcfService
         [OperationContract]
         IList<string> GetTerritori();
 
+        [OperationContract]
+        void RetrieveDataFromCoda();
+
+        [OperationContract]
+        bool UserIsValid(string username, string password, string category);
 
 
     }

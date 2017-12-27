@@ -48,7 +48,7 @@ Public Class MapperExport
                         & "Anno = @ann, " _
                         & "categoryId = @catid, " _
                         & "companyId = @comid, " _
-                        & "Ultimamodofica = @ult " _
+                        & "UltimaModifica = @ult " _
                         & "WHERE (ID = @Id )"
     End Function
 
@@ -101,7 +101,7 @@ Public Class MapperExport
             exp.Categoria = Categoria
 
 
-            Dim MapperTerritorio As MapperTerritorio = Registro.GetMapperByName("MapperCategoria")
+            Dim MapperTerritorio As MapperTerritorio = Registro.GetMapperByName("MapperTerritorio")
 
             Dim Id_Territorio As Int32 = IIf(rs.Item("companyId") IsNot Nothing, rs.Item("companyId"), -1)
             Dim Territorio As Territorio = IIf(Id_Territorio = -1, Nothing, MapperTerritorio.FindObjectById(Id_Territorio))
@@ -198,7 +198,7 @@ Public Class MapperExport
 
             param = Cmd.CreateParameter
             param.ParameterName = "@ann"
-            param.Value = DateTime.Now.Year
+            param.Value = exp.Anno
             Cmd.Parameters.Add(param)
 
 
@@ -207,18 +207,18 @@ Public Class MapperExport
 
             param = Cmd.CreateParameter
             param.ParameterName = "@catid"
-            param.Value = exp.Categoria.Id
+            param.Value = CLng(exp.Categoria.Id)
             Cmd.Parameters.Add(param)
 
 
 
             param = Cmd.CreateParameter
             param.ParameterName = "@comid"
-            param.Value = exp.Territorio.Id
+            param.Value = CLng(exp.Territorio.Id)
             Cmd.Parameters.Add(param)
 
             param = Cmd.CreateParameter
-            param.ParameterName = "@ulm"
+            param.ParameterName = "@ult"
             param.Value = DateTime.Now
             Cmd.Parameters.Add(param)
 
@@ -270,7 +270,7 @@ Public Class MapperExport
 
             param = Cmd.CreateParameter
             param.ParameterName = "@ann"
-            param.Value = DateTime.Now.Year
+            param.Value = exp.Anno
             Cmd.Parameters.Add(param)
 
 
@@ -279,18 +279,18 @@ Public Class MapperExport
 
             param = Cmd.CreateParameter
             param.ParameterName = "@catid"
-            param.Value = exp.Categoria.Id
+            param.Value = CLng(exp.Categoria.Id)
             Cmd.Parameters.Add(param)
 
 
 
             param = Cmd.CreateParameter
             param.ParameterName = "@comid"
-            param.Value = exp.Territorio.Id
+            param.Value = CLng(exp.Territorio.Id)
             Cmd.Parameters.Add(param)
 
             param = Cmd.CreateParameter
-            param.ParameterName = "@ulm"
+            param.ParameterName = "@ult"
             param.Value = DateTime.Now
             Cmd.Parameters.Add(param)
 

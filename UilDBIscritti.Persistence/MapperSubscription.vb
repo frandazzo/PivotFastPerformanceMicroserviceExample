@@ -34,7 +34,7 @@ Public Class MapperSubscription
     Protected Overrides Function InsertStatement() As String
         Return "Insert into iscrizioni (Id_Lavoratore, " _
                 & "Id_Importazione, Id_Provincia, NomeProvincia, " _
-                & "Id_Regione, NomeRegione, Anno, nazionaLavoratore, " _
+                & "Id_Regione, NomeRegione, Anno, nazioneLavoratore, " _
                 & "nomeCategoria, categoryId, territorioId) " _
                 & "values " _
                 & "(@idl, @idi, @idp, @nmp, @idr, " _
@@ -50,7 +50,7 @@ Public Class MapperSubscription
                 & "Id_Regione = @idr, " _
                 & "NomeRegione = @nmr, " _
                 & "Anno = @ann, " _
-                & "nazionaLavoratore = @nomnaz, " _
+                & "nazioneLavoratore = @nomnaz, " _
                 & "nomeCategoria = @nomcat, " _
                 & "categoryId = @catid, " _
                 & "territorioId = @comid " _
@@ -112,7 +112,7 @@ Public Class MapperSubscription
 
 
 
-            Dim MapperTerritorio As MapperTerritorio = Registro.GetMapperByName("MapperCategoria")
+            Dim MapperTerritorio As MapperTerritorio = Registro.GetMapperByName("MapperTerritorio")
 
             Dim Id_Territorio As Int32 = IIf(rs.Item("companyId") IsNot Nothing, rs.Item("companyId"), -1)
             Dim Territorio As Territorio = IIf(Id_Territorio = -1, Nothing, MapperTerritorio.FindObjectById(Id_Territorio))
@@ -170,7 +170,7 @@ Public Class MapperSubscription
             iscrizione.Categoria = Categoria
             iscrizione.ParentExport = Export
             iscrizione.Worker = WORKER
-            iscrizione.DenormalizedData.NomeNazioneNascita = IIf(rs.Item("nazionaLavoratore") IsNot Nothing, rs.Item("nazionaLavoratore"), "")
+            iscrizione.DenormalizedData.NomeNazioneNascita = IIf(rs.Item("nazioneLavoratore") IsNot Nothing, rs.Item("nazionaLavoratore"), "")
             iscrizione.Regione = Regione
             iscrizione.Province = PROVINCIA
 
@@ -261,7 +261,7 @@ Public Class MapperSubscription
 
             param = Cmd.CreateParameter
             param.ParameterName = "@ann"
-            param.Value = ""
+            param.Value = iscrizione.Anno
             Cmd.Parameters.Add(param)
 
 
@@ -339,7 +339,7 @@ Public Class MapperSubscription
 
             param = Cmd.CreateParameter
             param.ParameterName = "@ann"
-            param.Value = ""
+            param.Value = iscrizione.Anno
             Cmd.Parameters.Add(param)
 
 

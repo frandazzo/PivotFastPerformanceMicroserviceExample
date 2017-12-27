@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controllers\FenealIscrizioniController.cs" />
+    <Compile Include="controllers\UilIscrizioniController.cs" />
     <Compile Include="Devexpress\DataSourceLoadOptions.cs" />
     <Compile Include="Devexpress\Extensions.cs" />
     <Compile Include="fenealmodel\iscrizioni.cs" />
@@ -128,6 +129,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="uilmodel\Iscrizione.cs" />
+    <Compile Include="uilmodel\Territorio.cs" />
+    <Compile Include="uilmodel\UilModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

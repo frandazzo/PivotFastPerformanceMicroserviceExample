@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace UilDBIscritti.Handlers.ImportHandler
 {
-    [XmlRootAttribute("ImportOptions", Namespace = "www.uildbiscritti.it.it", IsNullable = false)]
+    [XmlRootAttribute("ImportOptions", Namespace = "www.uildbiscritti.it", IsNullable = false)]
     public class ImportOptions
     {
         [XmlAttribute("Validatore")]

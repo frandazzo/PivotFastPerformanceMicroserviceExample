@@ -42,8 +42,23 @@ namespace UilDBIscrittiExporter.Utils
             NameSurnameDTO result = new NameSurnameDTO();
             if (p.Length == 1)
             {
-                result.Surname = "";
-                return result;
+
+                //provo per i nomin sudidvisi per "/"
+                String[] p11 = sur.Split(new Char[] { '/' });
+
+                if (p11.Length == 2)
+                {
+                    result.Surname = p11[0];
+                    result.Name = p11[1];
+                    return result;
+                }
+                else
+                {
+                    result.Surname = "";
+                    return result;
+                }
+
+                
             }
 
             if (p.Length == 2)

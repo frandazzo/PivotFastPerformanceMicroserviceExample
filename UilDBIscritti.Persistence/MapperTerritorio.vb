@@ -10,11 +10,11 @@ Public Class MapperTerritorio
 #Region "Istruzioni Sql"
 
     Protected Overrides Function FindAllStatement() As String
-        Return "SELECT c.*, p.Descrizione as 'province' FROM fenealweb_company c inner join fenealweb_companies_provinces a on a.companyId = c.id inner join tb_provincie p on p.ID = a.provinceId order by province"
+        Return "SELECT c.*, p.Descrizione as 'province' FROM fenealweb_company c inner join fenealweb_companies_provinces a on a.companyId = c.id inner join tb_provincie p on p.ID = a.provinceId "
     End Function
 
     Protected Overrides Function FindByKeyStatement() As String
-        Return ""
+        Return "Select * from fenealweb_company where ID = @Id"
     End Function
 
     Protected Overrides Function InsertStatement() As String

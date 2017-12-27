@@ -109,5 +109,15 @@ namespace UilDBIscrittiExporter.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Waiting3 {
+            get {
+                object obj = ResourceManager.GetObject("Waiting3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

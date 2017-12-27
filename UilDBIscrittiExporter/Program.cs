@@ -32,10 +32,29 @@ namespace UilDBIscrittiExporter
             InitializeX509CertificateValidation();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Open();
         }
 
-     
+        private static void Open()
+        {
+            //instanzio il form per la verifica delle credenziali
+            FrmCredentials frm = new FrmCredentials();
+
+            //finchè le credenziali non sono corrette non libero l'applicazione
+            //a meno che non venga espressamente chiusa dall'utente
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+               
+                    Application.Run(new Form1());
+                
+            }
+
+
+            frm.Dispose();
+
+        }
+
+
 
         private static void InitializeX509CertificateValidation()
         {
