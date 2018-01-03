@@ -159,7 +159,7 @@ namespace UilDBIscritti.Handlers.ImportedDataPersisterSubsystem
                 //instanzio il componente per la verifica della presenza della traccia
                 ExportHandler h = new ExportHandler(_persistence);
                 //carico la traccia se esiste
-                h.LoadUniqueExport(exportData.Province.Id,exportData.Anno, exportData.Province.Id);
+                h.LoadUniqueExport(exportData.Province.Id,exportData.Anno, exportData.Categoria.Id);
 
                 if (h.Found)
                 {

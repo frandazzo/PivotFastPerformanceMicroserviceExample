@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -10,6 +11,7 @@ using UilDBIscritti.Domain.Security;
 using UilDBIscritti.Handlers.ImportHandler;
 using UilDBIscritti.Handlers.SecurityProviders;
 using UilDBIscritti.IntegrationEntities;
+using WIN.TECHNICAL.MIDDLEWARE.XmlSerializzation;
 using WIN.TECHNICAL.PERSISTENCE;
 using WIN.TECHNICAL.SECURITY_NEW;
 using WIN.TECHNICAL.SECURITY_NEW.Login;
@@ -62,6 +64,9 @@ namespace UilDBIscritti.ImportWcfService
 
                     sender.Send(errorLogDir, trace);
 
+
+                    CreateDirectoryForTraceData(trace);
+
                     return "";
                 }
                 catch (Exception ex)
@@ -74,6 +79,44 @@ namespace UilDBIscritti.ImportWcfService
 
             return "Utente non riconosciuto";
 
+
+        }
+
+        private void CreateDirectoryForTraceData(ExportTrace trace)
+        {
+            try
+            {
+                string strdocPath;
+                strdocPath = WebConfigurationManager.AppSettings["ImportExportDir"];
+
+                //verifico se esiste il path
+                if (!Directory.Exists(strdocPath))
+                    return;
+
+                //se la cartella esiste verifico se esiste la cartella della provincia
+                strdocPath = strdocPath + "//" + trace.Year + "-" + trace.Province;
+                //verifico se esiste il path se non esiste la creo
+                if (!Directory.Exists(strdocPath))
+                    Directory.CreateDirectory(strdocPath);
+
+                //ora posso inserire il file
+                //tutti i file avranno il seguente formato yyyy_num_guig.xml
+
+
+
+                string guid = Guid.NewGuid().ToString();
+
+
+                strdocPath += string.Format("//{0}_{1}_{2}.xml", trace.Year, trace.ExportNumber, guid);
+                ObjectXMLSerializer<ExportTrace>.Save(trace, strdocPath);
+                
+
+            }
+            catch (Exception)
+            {
+
+                
+            }
 
         }
 

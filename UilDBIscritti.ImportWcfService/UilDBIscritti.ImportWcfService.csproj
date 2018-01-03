@@ -59,6 +59,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WIN.TECHNICAL.MIDDLEWARE, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dlls\WIN.TECHNICAL.MIDDLEWARE.dll</HintPath>
+    </Reference>
     <Reference Include="WIN.TECHNICAL.SECURITY, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dlls\WIN.TECHNICAL.SECURITY.dll</HintPath>

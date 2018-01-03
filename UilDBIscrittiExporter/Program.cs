@@ -21,7 +21,7 @@ namespace UilDBIscrittiExporter
         static void Main()
         {
             //inizializzo il servizio geografico
-
+            InitializeX509CertificateValidation();
             GeoLocationFacade.InitializeInstance(GeoHandlerClass.Instance());
             GeoHandlerProvider.Instance.Geo = GeoLocationFacade.Instance();
             //metto in cache tutte le nazioni e i comuni per migliorare le prestazione nella validazione;
@@ -29,7 +29,7 @@ namespace UilDBIscrittiExporter
             GeoHandlerClass.Instance().LoadComuniHash();
             //recupero i dati dal server per metterli in cache
             ServerData d = ServerData.Instance;
-            InitializeX509CertificateValidation();
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Open();

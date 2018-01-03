@@ -182,13 +182,6 @@
     <Content Include="GEODB\geo2003.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\Waiting3.jpg" />
-    <None Include="Resources\Waiting31.jpg" />
-    <None Include="Resources\ok1.png" />
-    <None Include="Resources\sign-error-icon.png" />
-    <None Include="Resources\ok.png" />
-    <None Include="Resources\database.png" />
-    <None Include="Resources\UIL_logo.gif" />
     <None Include="Service References\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -196,11 +189,17 @@
     <None Include="Service References\ServiceReference1\configuration.svcinfo" />
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference1\ImportExportService.disco" />
+    <None Include="Resources\Waiting3.jpg" />
+    <None Include="Resources\Waiting31.jpg" />
+    <None Include="Resources\ok1.png" />
+    <None Include="Resources\sign-error-icon.png" />
+    <None Include="Resources\ok.png" />
+    <None Include="Resources\database.png" />
+    <None Include="Resources\UIL_logo.gif" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
