@@ -57,56 +57,116 @@ namespace IscrittiMicroService.controllers
 
 
 
-        //[HttpGet]
-        //[Route("iscrizioni")]
-        //public HttpResponseMessage RetrieveIscrizioni()
-        //{
-        //    Model1 m = new Model1();
+        [HttpGet]
+        [Route("iscrizioni")]
+        public HttpResponseMessage RetrieveIscrizioni(DataSourceLoadOptions loadOptions, int anno, string moreTime = "")
+        {
+            Model1 m = new Model1();
+            m.Database.CommandTimeout = 300;
+            loadOptions.PrimaryKey = new[] {"Anno", "Id_Provincia", "Id_Lavoratore" };
+            //se  inserisco nella query string moreTime  implica che la queri sulle iscrizioni
+            //prenderà gli iscritti più di una volta e cioè la clausola group by  conterrà  
+            //la limitazione sul settore...
 
-        //    var query = from a in m.iscrizioni
-        //                where a.ID < 5000
-        //                group a by new { a.Anno, a.NomeProvincia, a.Id_Lavoratore , a.NomeRegione, a.lavoratori.NomeNazione } into q
-        //                select new
-        //                {
-        //                    Anno = q.Key.Anno,
-        //                    NomeProvincia = q.Key.NomeProvincia,
-        //                    Id_Lavoratore = q.Key.Id_Lavoratore,
-        //                    NomeRegione= q.Key.NomeRegione,
-        //                    NomeNazione = q.Key.NomeNazione
-        //                };
 
-        //    Console.WriteLine(query.Count());
-        //    return Request.CreateResponse(query);
-        //}
+            //query pre prendere una sola volta senza settore......
+            //nel group
+            var query  = from a in m.iscrizioni where a.Anno == anno 
+                                group a by new
+                                {
+                                   // a.Anno,
+                                    a.Id_Provincia,
+                                    a.Id_Lavoratore,
+                                    a.Settore,
+                                    a.NomeProvincia,
+                                    a.NomeRegione,
+                                    a.lavoratori.NomeNazione
+                                } into q
+                                select new
+                                {
+                                    
+                                    Anno = anno, 
+                                    Id_Provincia = q.Key.Id_Provincia,
+                                    Id_Lavoratore = q.Key.Id_Lavoratore,
+                                    Provincia = q.Key.NomeProvincia,
+                                    Regione = q.Key.NomeRegione,
+                                    Settore = q.Key.Settore,
+                                    Nazionalita = q.Key.NomeNazione
+                                }; 
+
+
+
+
+
+            //query per prendere un lavoratore per settore e per provincia
+            var query1 = from a in m.iscrizioni
+                        group a by new
+                        {
+                            a.Id_Lavoratore,
+                            a.NomeProvincia,
+                            a.Anno,
+                            a.NomeRegione,
+                            a.lavoratori.NomeNazione,
+                            a.Settore
+                        } into q
+                        select new
+                        {
+                            Anno = q.Key.Anno,
+                            Provincia = q.Key.NomeProvincia,
+                            Id_Lavoratore = q.Key.Id_Lavoratore,
+                            Regione = q.Key.NomeRegione,
+                            Nazionalita = q.Key.NomeNazione,
+                            Settore = q.Key.Settore
+                        };
+
+
+            if (!String.IsNullOrEmpty(moreTime))
+            {
+                var data = DataSourceLoader.Load(query1, loadOptions);
+                return Request.CreateResponse(data);
+            }
+            else
+            {
+                var data = DataSourceLoader.Load(query, loadOptions);
+                return Request.CreateResponse(data);
+            }
+
+               
+        }
 
 
 
         
-        // GET api/<controller>
-        [HttpGet]
-        [Route("iscrizioni")]
-        public HttpResponseMessage Get(DataSourceLoadOptions loadOptions, string sector= "")
-        {
-            Model1 m = new Model1();
-            loadOptions.PrimaryKey = new[] { "ID" };
+        //// GET api/<controller>
+        //[HttpGet]
+        //[Route("iscrizioni")]
+        //public HttpResponseMessage Get(DataSourceLoadOptions loadOptions, string oneTime= "")
+        //{
+        //    Model1 m = new Model1();
+        //    loadOptions.PrimaryKey = new[] { "ID" };
 
-            var orders = from a in m.iscrizioni
-                         //where a.Settore == "EDILE" && a.NomeProvincia == "MILANO" && a.Anno == 2016
-                         select new
-                         {
-                             ID = a.ID,
-                             Anno = a.Anno,
-                             Provincia = a.NomeProvincia,
-                             Id_Lavoratore = a.Id_Lavoratore,
-                             Regione = a.NomeRegione,
-                             Nazionalita = a.lavoratori.NomeNazione
-                         };
-
-            var data = DataSourceLoader.Load(orders, loadOptions);
+        //    //se inserisco nella query string oneTime  implica che la queri sulle iscrizioni
+        //    //prenderà gli iscritti una sola volta e cioè la clausola group by conterrà anche 
+        //    //la limitazione sul settore...
 
 
-            return Request.CreateResponse(data);
-        }
+        //    var orders = from a in m.iscrizioni
+        //                 //where a.Settore == "EDILE" && a.NomeProvincia == "MILANO" && a.Anno == 2016
+        //                 select new
+        //                 {
+        //                     ID = a.ID,
+        //                     Anno = a.Anno,
+        //                     Provincia = a.NomeProvincia,
+        //                     Id_Lavoratore = a.Id_Lavoratore,
+        //                     Regione = a.NomeRegione,
+        //                     Nazionalita = a.lavoratori.NomeNazione
+        //                 };
+
+        //    var data = DataSourceLoader.Load(orders, loadOptions);
+
+
+        //    return Request.CreateResponse(data);
+        //}
 
 
     }

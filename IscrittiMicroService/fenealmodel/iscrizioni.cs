@@ -11,6 +11,9 @@ namespace IscrittiMicroService.fenealmodel
     {
         public int ID { get; set; }
 
+      
+
+
         public int? Id_Lavoratore { get; set; }
 
         public int? Id_Importazione { get; set; }

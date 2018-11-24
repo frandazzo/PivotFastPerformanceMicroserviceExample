@@ -21,6 +21,7 @@ namespace IscrittiMicroService
 #if DEBUG
             Service1 s = new Service1();
             s.onDebug();
+            System.Threading.Thread.Sleep(-1);
 #else
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
