@@ -63,7 +63,7 @@ namespace IscrittiMicroService.controllers
         {
             Model1 m = new Model1();
             m.Database.CommandTimeout = 300;
-            loadOptions.PrimaryKey = new[] {"Anno", "Id_Provincia", "Id_Lavoratore" };
+            
             //se  inserisco nella query string moreTime  implica che la queri sulle iscrizioni
             //prenderà gli iscritti più di una volta e cioè la clausola group by  conterrà  
             //la limitazione sul settore...
@@ -71,62 +71,71 @@ namespace IscrittiMicroService.controllers
 
             //query pre prendere una sola volta senza settore......
             //nel group
-            var query  = from a in m.iscrizioni where a.Anno == anno 
-                                group a by new
-                                {
-                                   // a.Anno,
-                                    a.Id_Provincia,
-                                    a.Id_Lavoratore,
-                                    a.Settore,
-                                    a.NomeProvincia,
-                                    a.NomeRegione,
-                                    a.lavoratori.NomeNazione
-                                } into q
-                                select new
-                                {
-                                    
-                                    Anno = anno, 
-                                    Id_Provincia = q.Key.Id_Provincia,
-                                    Id_Lavoratore = q.Key.Id_Lavoratore,
-                                    Provincia = q.Key.NomeProvincia,
-                                    Regione = q.Key.NomeRegione,
-                                    Settore = q.Key.Settore,
-                                    Nazionalita = q.Key.NomeNazione
-                                }; 
 
-
-
-
-
-            //query per prendere un lavoratore per settore e per provincia
-            var query1 = from a in m.iscrizioni
-                        group a by new
-                        {
-                            a.Id_Lavoratore,
-                            a.NomeProvincia,
-                            a.Anno,
-                            a.NomeRegione,
-                            a.lavoratori.NomeNazione,
-                            a.Settore
-                        } into q
-                        select new
-                        {
-                            Anno = q.Key.Anno,
-                            Provincia = q.Key.NomeProvincia,
-                            Id_Lavoratore = q.Key.Id_Lavoratore,
-                            Regione = q.Key.NomeRegione,
-                            Nazionalita = q.Key.NomeNazione,
-                            Settore = q.Key.Settore
-                        };
-
-
-            if (!String.IsNullOrEmpty(moreTime))
+            if (String.IsNullOrEmpty(moreTime))
             {
+                //li voglio presi una sola volta
+                loadOptions.PrimaryKey = new[] { "Id_Provincia", "Id_Lavoratore"  };
+
+
+                //query per prendere un lavoratore per settore e per provincia
+                var query1 = from a in m.iscrizioni
+                            where a.Anno == anno
+                            group a by new
+                            {
+
+                                // a.Anno,
+                                a.Id_Provincia,
+                                a.Id_Lavoratore,
+                                a.NomeProvincia,
+                                a.NomeRegione,
+                                a.lavoratori.NomeNazione
+                            } into q
+                            select new
+                            {
+                                Anno = anno,
+                                Id_Provincia = q.Key.Id_Provincia,
+                                Id_Lavoratore = q.Key.Id_Lavoratore,
+                                Provincia = q.Key.NomeProvincia,
+                                Regione = q.Key.NomeRegione,
+                                Nazionalita = q.Key.NomeNazione
+                            };
+
+
+
+
                 var data = DataSourceLoader.Load(query1, loadOptions);
                 return Request.CreateResponse(data);
             }
             else
             {
+                //li voglio presi un avolta per settore
+                loadOptions.PrimaryKey = new[] { "Id_Provincia", "Id_Lavoratore", "Settore" };
+
+                var query = from a in m.iscrizioni
+                            where a.Anno == anno
+                            group a by new
+                            {
+                                // a.Anno,
+                                a.Id_Provincia,
+                                a.Id_Lavoratore,
+                                a.Settore,
+                                a.NomeProvincia,
+                                a.NomeRegione,
+                                a.lavoratori.NomeNazione
+                            } into q
+                            select new
+                            {
+
+                                Anno = anno,
+                                Id_Provincia = q.Key.Id_Provincia,
+                                Id_Lavoratore = q.Key.Id_Lavoratore,
+                                Provincia = q.Key.NomeProvincia,
+                                Regione = q.Key.NomeRegione,
+                                Settore = q.Key.Settore,
+                                Nazionalita = q.Key.NomeNazione
+                            };
+
                 var data = DataSourceLoader.Load(query, loadOptions);
                 return Request.CreateResponse(data);
             }
